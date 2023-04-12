@@ -1,4 +1,4 @@
-package calculator.anova.elena.anovacalculator;
+package calculator.anova.elena;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

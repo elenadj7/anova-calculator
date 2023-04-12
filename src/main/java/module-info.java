@@ -1,8 +1,8 @@
-module calculator.anova.elena.anovacalculator {
+module calculator.anova.elena{
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens calculator.anova.elena.anovacalculator to javafx.fxml;
-    exports calculator.anova.elena.anovacalculator;
+    opens calculator.anova.elena to javafx.fxml;
+    exports calculator.anova.elena;
 }

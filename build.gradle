@@ -24,8 +24,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'calculator.anova.elena.anovacalculator'
-    mainClass = 'calculator.anova.elena.anovacalculator.HelloApplication'
+    mainModule = 'calculator.anova.elena'
+    mainClass = 'calculator.anova.elena.App'
 }
 
 javafx {

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.anovacalculator.StartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.StartController">
    <children>
       <Label layoutX="53.0" layoutY="74.0" prefHeight="26.0" prefWidth="267.0" text="Enter the number of alternatives [min 2, max 12]:" />
       <TextField fx:id="textArea" layoutX="138.0" layoutY="115.0" prefHeight="26.0" prefWidth="97.0" />
