@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ public class InputController {
     private static ArrayList<TextField> alternatives = new ArrayList<>();
 
     @FXML private AnchorPane pane;
+    @FXML private Label label;
 
     public static void setStage(Stage mainStage){
         stage = mainStage;
@@ -32,7 +34,25 @@ public class InputController {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("input-view.fxml"));
         return new Scene(fxmlLoader.load(), 944, 603);
     }
+    private static ArrayList<ArrayList<Double>> makeMatrix() throws Exception{
+        ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
+        for(TextField field : alternatives){
 
+            String[] elements = field.getText().split(",");
+            ArrayList<Double> list = new ArrayList<>();
+            for(String element : elements){
+                list.add(Double.parseDouble(element));
+            }
+            matrix.add(list);
+        }
+
+        int firstSize = matrix.get(0).size();
+        if (!(matrix.stream().allMatch(list -> list.size() == firstSize))){
+            throw new Exception();
+        }
+
+        return matrix;
+    }
     @FXML public void initialize(){
 
         double value = 55.0;
@@ -49,8 +69,13 @@ public class InputController {
     }
     @FXML public void calculateButtonOnAction(ActionEvent event) throws IOException {
 
-        MainController.makeMatrix(alternatives);
-        alternatives.clear();
-        stage.setScene(MainController.createScene());
+        try{
+            MainController.initializeMatrix(makeMatrix());
+            alternatives.clear();
+            stage.setScene(MainController.createScene());
+        }
+        catch (Exception e){
+            label.setText("The measurements were not entered correctly");
+        }
     }
 }
