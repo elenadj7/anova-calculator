@@ -46,4 +46,19 @@ public class Anova {
     public static double getSSE(ArrayList<ArrayList<Double>> matrix){
         return getSST(matrix) - getSSA(matrix);
     }
+    public static int getDegFreedomAlternatives(ArrayList<ArrayList<Double>> matrix){
+        return matrix.size() - 1;
+    }
+    public static int getDegFreedomError(ArrayList<ArrayList<Double>> matrix){
+        return (matrix.size() - 1)*(matrix.get(0).size() - 1);
+    }
+    public static double meanSquareAlternatives(ArrayList<ArrayList<Double>> matrix){
+        return getSSE(matrix) / getDegFreedomAlternatives(matrix);
+    }
+    public static double meanSquareError(ArrayList<ArrayList<Double>> matrix){
+        return getSSE(matrix) / getDegFreedomError(matrix);
+    }
+    public static double getComputedF(ArrayList<ArrayList<Double>> matrix){
+        return meanSquareAlternatives(matrix) / meanSquareError(matrix);
+    }
 }

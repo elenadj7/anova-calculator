@@ -32,6 +32,6 @@ public class MainController {
         stage.setScene(StartController.createScene());
     }
     @FXML public void initialize(){
-        
+
     }
 }
