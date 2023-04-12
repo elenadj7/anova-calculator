@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.anovacalculator.MainController">
+   <children>
+      <Button layoutX="409.0" layoutY="549.0" mnemonicParsing="false" onAction="#homepageOnAction" text="return to home page" />
+   </children>
+</AnchorPane>
