@@ -3,10 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="944.0" style="-fx-background-color: FEF2F4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.MainController">
    <children>
-      <Button layoutX="409.0" layoutY="563.0" mnemonicParsing="false" onAction="#homepageOnAction" text="return to home page" />
-      <Label fx:id="label" alignment="CENTER" layoutX="17.0" layoutY="30.0" prefHeight="512.0" prefWidth="903.0" textAlignment="CENTER" />
+      <Button layoutX="409.0" layoutY="563.0" mnemonicParsing="false" onAction="#homepageOnAction" style="-fx-background-color: FCC8D1; -fx-border-color: D14D72;" text="return to home page" textFill="#d14d72" />
+      <Label fx:id="label" alignment="CENTER" layoutX="17.0" layoutY="30.0" prefHeight="512.0" prefWidth="903.0" textAlignment="CENTER" textFill="#d14d72">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
 </AnchorPane>

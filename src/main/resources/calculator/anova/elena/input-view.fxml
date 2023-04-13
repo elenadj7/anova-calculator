@@ -4,9 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="944.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.InputController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="944.0" style="-fx-background-color: FEF2F4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.InputController">
    <children>
-      <Label fx:id="label" alignment="CENTER" layoutX="231.0" layoutY="14.0" prefHeight="26.0" prefWidth="482.0" text="Enter measurements for every alternative" textAlignment="CENTER" />
-      <Button layoutX="440.0" layoutY="552.0" mnemonicParsing="false" onAction="#calculateButtonOnAction" text="Calculate" />
+      <Label fx:id="label" alignment="CENTER" layoutX="231.0" layoutY="14.0" prefHeight="26.0" prefWidth="482.0" text="Enter measurements for every alternative" textAlignment="CENTER" textFill="#d14d72" />
+      <Button layoutX="440.0" layoutY="552.0" mnemonicParsing="false" onAction="#calculateButtonOnAction" style="-fx-border-color: D14D72; -fx-background-color: FCC8D1;" text="Calculate" textFill="#d14d72" />
    </children>
 </AnchorPane>

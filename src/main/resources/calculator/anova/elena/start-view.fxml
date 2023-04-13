@@ -5,11 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.StartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="307.0" prefWidth="397.0" style="-fx-background-color: FEF2F4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.anova.elena.StartController">
    <children>
-      <Label layoutX="53.0" layoutY="74.0" prefHeight="26.0" prefWidth="267.0" text="Enter the number of alternatives [min 2, max 12]:" />
+      <Label layoutX="77.0" layoutY="71.0" prefHeight="26.0" prefWidth="218.0" text="Enter the number of alternatives [min 2]:" textFill="#d14d72" />
       <TextField fx:id="textArea" layoutX="138.0" layoutY="115.0" prefHeight="26.0" prefWidth="97.0" />
-      <Button layoutX="166.0" layoutY="161.0" mnemonicParsing="false" onAction="#nextButtonOnAction" text="Next" />
+      <Button layoutX="166.0" layoutY="161.0" mnemonicParsing="false" onAction="#nextButtonOnAction" style="-fx-border-color: D14D72; -fx-background-color: FCC8D1;" text="Next" textFill="#d14d72" />
       <Label fx:id="outputLabel" alignment="CENTER" layoutX="91.0" layoutY="214.0" prefHeight="58.0" prefWidth="190.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

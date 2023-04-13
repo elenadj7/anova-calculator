@@ -1,7 +1,11 @@
 package calculator.anova.elena.analysis;
 
 import org.apache.commons.math3.distribution.FDistribution;
+import org.apache.commons.math3.distribution.TDistribution;
+
 import java.util.ArrayList;
+
+import static java.lang.Math.sqrt;
 
 public class Anova {
 
@@ -13,7 +17,7 @@ public class Anova {
     public static double getTotalArithmeticMean(ArrayList<ArrayList<Double>> matrix){
         return matrix.stream().mapToDouble(k -> k.stream().mapToDouble(Double::doubleValue).average().getAsDouble()).average().getAsDouble();
     }
-    public static ArrayList<Double> getEffect(ArrayList<ArrayList<Double>> matrix){
+    public static ArrayList<Double> getEffects(ArrayList<ArrayList<Double>> matrix){
 
         ArrayList<Double> effects = new ArrayList<>();
         ArrayList<Double> means = getArithmeticMean(matrix);
@@ -62,10 +66,10 @@ public class Anova {
         return matrix.size() - 1;
     }
     public static int getDegFreedomError(ArrayList<ArrayList<Double>> matrix){
-        return (matrix.size() - 1)*(matrix.get(0).size() - 1);
+        return matrix.size()*(matrix.get(0).size() - 1);
     }
     public static double meanSquareAlternatives(ArrayList<ArrayList<Double>> matrix){
-        return getSSE(matrix) / getDegFreedomAlternatives(matrix);
+        return getSSA(matrix) / getDegFreedomAlternatives(matrix);
     }
     public static double meanSquareError(ArrayList<ArrayList<Double>> matrix){
         return getSSE(matrix) / getDegFreedomError(matrix);
@@ -75,7 +79,26 @@ public class Anova {
     }
     public static double getTabulatedF(ArrayList<ArrayList<Double>> matrix){
         double confidenceLevel = 0.95;
-        return new FDistribution(getDegFreedomAlternatives(matrix), getDegFreedomError(matrix)).inverseCumulativeProbability(1 - (1 - confidenceLevel) / 2);
+        return new FDistribution(getDegFreedomAlternatives(matrix), getDegFreedomError(matrix)).inverseCumulativeProbability(confidenceLevel);
+    }
+    private static double[] convert(ArrayList<Double> arrayList) {
+        double[] array = new double[arrayList.size()];
+        int index = 0;
+        for (Double value : arrayList) {
+            array[index++] = value;
+        }
+        return array;
+    }
+    public static double getStudentDistribution(ArrayList<ArrayList<Double>> matrix){
+        double k = matrix.size();
+        double n = matrix.get(0).size();
+        double alpha = 0.05;
+        return new TDistribution(k*(n-1)).inverseCumulativeProbability(1 - alpha/2);
+    }
+    public static double getSc(ArrayList<ArrayList<Double>> matrix){
+        double k = matrix.size();
+        double n = matrix.get(0).size();
+        return sqrt((2*getDegFreedomError(matrix))/(k*n));
     }
     public static String getResults(ArrayList<ArrayList<Double>> matrix){
 
@@ -88,7 +111,23 @@ public class Anova {
         double tabulated = getTabulatedF(matrix);
         result += "Computed F: " + computed + "\n";
         result += "Tabulated F: " + tabulated + "\n";
-        result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n";
+        result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n\n\n";
+
+        double sc = getSc(matrix);
+        double studentDistribution = getStudentDistribution(matrix);
+        ArrayList<Double> effects = getEffects(matrix);
+        for(int i = 0; i < effects.size() - 1; ++i){
+            for(int j = i + 1; j < effects.size(); ++j){
+
+                double c = effects.get(i) - effects.get(j);
+                double c1 = c - studentDistribution*sc;
+                double c2 = c + studentDistribution*sc;
+                int first = i+1;
+                int second = j+1;
+                result += "Confidence interval for the " + first + ". and " + second + ". alternatives: (" + c1 + "," + c2 + ")\n";
+
+            }
+        }
         return result;
     }
 }
