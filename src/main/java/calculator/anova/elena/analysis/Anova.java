@@ -111,7 +111,7 @@ public class Anova {
         double tabulated = getTabulatedF(matrix);
         result += "Computed F: " + computed + "\n";
         result += "Tabulated F: " + tabulated + "\n";
-        result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n\n\n";
+        result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n\n";
 
         double sc = getSc(matrix);
         double studentDistribution = getStudentDistribution(matrix);
@@ -124,7 +124,7 @@ public class Anova {
                 double c2 = c + studentDistribution*sc;
                 int first = i+1;
                 int second = j+1;
-                result += "Confidence interval for the " + first + ". and " + second + ". alternatives: (" + c1 + "," + c2 + ")\n";
+                result += "95% confidence interval for comparing the " + first + ". and " + second + ". alternatives: (" + c1 + "," + c2 + ")\n";
 
             }
         }
