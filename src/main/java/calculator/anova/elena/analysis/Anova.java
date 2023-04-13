@@ -1,5 +1,6 @@
 package calculator.anova.elena.analysis;
 
+//import org.apache.commons.math3.distribution.FDistribution;
 import java.util.ArrayList;
 
 public class Anova {
@@ -11,6 +12,17 @@ public class Anova {
     }
     public static double getTotalArithmeticMean(ArrayList<ArrayList<Double>> matrix){
         return matrix.stream().mapToDouble(k -> k.stream().mapToDouble(Double::doubleValue).average().getAsDouble()).average().getAsDouble();
+    }
+    public static ArrayList<Double> getEffect(ArrayList<ArrayList<Double>> matrix){
+
+        ArrayList<Double> effects = new ArrayList<>();
+        ArrayList<Double> means = getArithmeticMean(matrix);
+        double totalMean = getTotalArithmeticMean(matrix);
+
+        for(Double mean : means){
+            effects.add(mean - totalMean);
+        }
+        return effects;
     }
 
     public static double getSSA(ArrayList<ArrayList<Double>> matrix){
@@ -60,5 +72,23 @@ public class Anova {
     }
     public static double getComputedF(ArrayList<ArrayList<Double>> matrix){
         return meanSquareAlternatives(matrix) / meanSquareError(matrix);
+    }
+    /*public static double getTabulatedF(ArrayList<ArrayList<Double>> matrix){
+        double confidenceLevel = 0.95;
+        return new FDistribution(getDegFreedomAlternatives(matrix), getDegFreedomError(matrix)).inverseCumulativeProbability(1 - (1 - confidenceLevel) / 2);
+    }*/
+    public static String getResults(ArrayList<ArrayList<Double>> matrix){
+
+        String result = "Deg freedom(SSA): " + getDegFreedomAlternatives(matrix) + "\n";
+        result += "Deg freedom(SSE): " + getDegFreedomError(matrix) + "\n";
+        result += "Mean square(SSA): " + meanSquareAlternatives(matrix) + "\n";
+        result += "Mean square(SSE): " + meanSquareError(matrix) + "\n";
+
+        double computed = getComputedF(matrix);
+        //double tabulated = getTabulatedF(matrix);
+        result += "Computed F: " + computed + "\n";
+        //result += "Tabulated F: " + tabulated + "\n";
+        //result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n";
+        return result;
     }
 }
