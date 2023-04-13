@@ -1,6 +1,6 @@
 package calculator.anova.elena.analysis;
 
-//import org.apache.commons.math3.distribution.FDistribution;
+import org.apache.commons.math3.distribution.FDistribution;
 import java.util.ArrayList;
 
 public class Anova {
@@ -73,10 +73,10 @@ public class Anova {
     public static double getComputedF(ArrayList<ArrayList<Double>> matrix){
         return meanSquareAlternatives(matrix) / meanSquareError(matrix);
     }
-    /*public static double getTabulatedF(ArrayList<ArrayList<Double>> matrix){
+    public static double getTabulatedF(ArrayList<ArrayList<Double>> matrix){
         double confidenceLevel = 0.95;
         return new FDistribution(getDegFreedomAlternatives(matrix), getDegFreedomError(matrix)).inverseCumulativeProbability(1 - (1 - confidenceLevel) / 2);
-    }*/
+    }
     public static String getResults(ArrayList<ArrayList<Double>> matrix){
 
         String result = "Deg freedom(SSA): " + getDegFreedomAlternatives(matrix) + "\n";
@@ -85,10 +85,10 @@ public class Anova {
         result += "Mean square(SSE): " + meanSquareError(matrix) + "\n";
 
         double computed = getComputedF(matrix);
-        //double tabulated = getTabulatedF(matrix);
+        double tabulated = getTabulatedF(matrix);
         result += "Computed F: " + computed + "\n";
-        //result += "Tabulated F: " + tabulated + "\n";
-        //result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n";
+        result += "Tabulated F: " + tabulated + "\n";
+        result += computed > tabulated ? "ComputedF > TabulatedF -> 95% confidence that the differences between the alternatives are statistically significant\n" : "ComputedF < TabulatedF -> 95% confidence that the differences between the alternatives are not statistically significant\n";
         return result;
     }
 }
