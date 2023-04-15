@@ -92,13 +92,13 @@ public class Anova {
     public static double getStudentDistribution(ArrayList<ArrayList<Double>> matrix){
         double k = matrix.size();
         double n = matrix.get(0).size();
-        double alpha = 0.05;
-        return new TDistribution(k*(n-1)).inverseCumulativeProbability(1 - alpha/2);
+        double alpha = 0.95;
+        return new TDistribution(k*(n-1)).inverseCumulativeProbability(alpha);
     }
     public static double getSc(ArrayList<ArrayList<Double>> matrix){
         double k = matrix.size();
         double n = matrix.get(0).size();
-        return sqrt((2*getDegFreedomError(matrix))/(k*n));
+        return sqrt((2*meanSquareError(matrix))/(k*n));
     }
     public static String getResults(ArrayList<ArrayList<Double>> matrix){
 
